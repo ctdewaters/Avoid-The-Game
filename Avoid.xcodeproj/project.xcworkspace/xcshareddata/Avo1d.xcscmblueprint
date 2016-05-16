@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "5DF9DABDE91EEEB17A20BFC32C84B17D41D09C27",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "1333D2CAE4DC6E2EA6A0F2DA3B3D2833BD6DE490" : 0,
+    "5DF9DABDE91EEEB17A20BFC32C84B17D41D09C27" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "9D1D01BA-7969-44E4-89D0-411AC4FA1686",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "1333D2CAE4DC6E2EA6A0F2DA3B3D2833BD6DE490" : "AnyScore\/AnyScore",
+    "5DF9DABDE91EEEB17A20BFC32C84B17D41D09C27" : "avo1d"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Avo1d",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 203,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Avo1d.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/iInnovateDesign\/AnyScore.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "1333D2CAE4DC6E2EA6A0F2DA3B3D2833BD6DE490"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/iInnovateDesign\/avo1d.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5DF9DABDE91EEEB17A20BFC32C84B17D41D09C27"
+    }
+  ]
+}

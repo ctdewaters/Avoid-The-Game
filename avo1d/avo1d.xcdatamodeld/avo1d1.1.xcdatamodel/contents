@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6750" systemVersion="14C99d" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="DefenseMode" syncable="YES">
+        <attribute name="defenseHighScore" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="GameStorage" syncable="YES">
+        <attribute name="highScore" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+    </entity>
+    <entity name="Personal" syncable="YES">
+        <attribute name="uNColor" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Settings" syncable="YES">
+        <attribute name="gameMode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sensitivity" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="GameStorage" positionX="-63" positionY="-18" width="128" height="60"/>
+        <element name="Personal" positionX="-36" positionY="9" width="128" height="60"/>
+        <element name="Settings" positionX="-54" positionY="0" width="128" height="75"/>
+        <element name="DefenseMode" positionX="-45" positionY="9" width="128" height="60"/>
+    </elements>
+</model>
