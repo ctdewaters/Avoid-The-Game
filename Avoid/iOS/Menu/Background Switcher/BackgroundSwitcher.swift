@@ -156,8 +156,8 @@ class BackgroundSwitcher: UIView, UIScrollViewDelegate, UIImagePickerControllerD
     }
     
     //MARK: - Image Picker
-    func showImagePicker(sender: UIButton) {
-        imagePicker.allowsEditing = true
+    @objc func showImagePicker(sender: UIButton) {
+        imagePicker.allowsEditing = false
         if sender == cameraButton {
             imagePicker.sourceType = .camera
         }
@@ -168,10 +168,12 @@ class BackgroundSwitcher: UIView, UIScrollViewDelegate, UIImagePickerControllerD
     }
     
     //ImagePicker Delegate
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         self.animateOut(sender: nil)
         menu.backgroundSelectorOpen = false
         picker.dismiss(animated: true, completion: nil)
+        
+        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else { return }
         if image != menu.backgroundImage.image {
             //Change background image
             animator.complexAnimationForDuration(0.7, delay: 0, animation1: {
@@ -184,6 +186,11 @@ class BackgroundSwitcher: UIView, UIScrollViewDelegate, UIImagePickerControllerD
                 })
             })
         }
+
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
     }
     
     //MARK: - New background setup.

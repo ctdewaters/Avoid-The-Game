@@ -918,13 +918,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameTimerDelegate, GameForeg
             recordingLabel.removeFromSuperview()
             recordingLabel = nil
             sharedRecorder.stopRecording(handler: {
-                (previewVC: RPPreviewViewController?, error: NSError?) -> Void in
+                (previewVC: RPPreviewViewController?, error: Error?) -> Void in
                 if previewVC != nil {
                     self.previewViewController = previewVC!
                     self.previewViewController.previewControllerDelegate = self
                     self.menu.addViewReplayButton()
                 }
-            } as! (RPPreviewViewController?, Error?) -> Void)
+            })
         }
         
         if Double(defenseScore!) > highScore{
