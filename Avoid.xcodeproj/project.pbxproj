@@ -30,6 +30,8 @@
 		B8FD0A5820B322AF009F657F /* AvoidButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FD0A5720B322AF009F657F /* AvoidButton.swift */; };
 		B8FD0A5B20B34059009F657F /* Audiowide-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B8FD0A5A20B34059009F657F /* Audiowide-Regular.ttf */; };
 		B8FD0A5D20B3406F009F657F /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B8FD0A5C20B3406F009F657F /* Rubik-Regular.ttf */; };
+		B8FD0A6120B34899009F657F /* BackgroundSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FD0A6020B34899009F657F /* BackgroundSwitcher.swift */; };
+		B8FD0A6320B348C7009F657F /* BackgroundSwitcherButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FD0A6220B348C7009F657F /* BackgroundSwitcherButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +65,8 @@
 		B8FD0A5720B322AF009F657F /* AvoidButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvoidButton.swift; sourceTree = "<group>"; };
 		B8FD0A5A20B34059009F657F /* Audiowide-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Audiowide-Regular.ttf"; sourceTree = "<group>"; };
 		B8FD0A5C20B3406F009F657F /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
+		B8FD0A6020B34899009F657F /* BackgroundSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundSwitcher.swift; sourceTree = "<group>"; };
+		B8FD0A6220B348C7009F657F /* BackgroundSwitcherButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundSwitcherButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,7 +138,7 @@
 			children = (
 				B8FD0A2720B316C2009F657F /* AppDelegate.swift */,
 				B8FD0A2120B316C2009F657F /* IntroViewController.swift */,
-				B8FD0A2820B316C2009F657F /* Menu.swift */,
+				B8FD0A5E20B34883009F657F /* Menu */,
 				B8FD0A5720B322AF009F657F /* AvoidButton.swift */,
 				B8FD0A5220B321FF009F657F /* Game */,
 				B8FD0A5020B31E68009F657F /* Main.storyboard */,
@@ -196,6 +200,24 @@
 				B8FD0A5520B3224A009F657F /* ForegroundGameView.swift */,
 			);
 			path = "Supplemental Views";
+			sourceTree = "<group>";
+		};
+		B8FD0A5E20B34883009F657F /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				B8FD0A2820B316C2009F657F /* Menu.swift */,
+				B8FD0A5F20B34888009F657F /* Background Switcher */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		B8FD0A5F20B34888009F657F /* Background Switcher */ = {
+			isa = PBXGroup;
+			children = (
+				B8FD0A6020B34899009F657F /* BackgroundSwitcher.swift */,
+				B8FD0A6220B348C7009F657F /* BackgroundSwitcherButton.swift */,
+			);
+			path = "Background Switcher";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,6 +310,7 @@
 				B8FD0A4820B316C3009F657F /* EARestrictedScrollView.m in Sources */,
 				B8FD0A4320B316C3009F657F /* AppDelegate.swift in Sources */,
 				B8FD0A3C20B316C3009F657F /* avo1d.xcdatamodeld in Sources */,
+				B8FD0A6120B34899009F657F /* BackgroundSwitcher.swift in Sources */,
 				B8FD0A5420B3221C009F657F /* BulletCountView.swift in Sources */,
 				B8FD0A5620B3224A009F657F /* ForegroundGameView.swift in Sources */,
 				B8FD0A3E20B316C3009F657F /* GameViewController.swift in Sources */,
@@ -297,6 +320,7 @@
 				B8FD0A4620B316C3009F657F /* EAIntroView.m in Sources */,
 				B8FD0A4920B316C3009F657F /* CoreDataManager.swift in Sources */,
 				B8FD0A4A20B316C3009F657F /* Animator.swift in Sources */,
+				B8FD0A6320B348C7009F657F /* BackgroundSwitcherButton.swift in Sources */,
 				B8FD0A4720B316C3009F657F /* EAIntroPage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

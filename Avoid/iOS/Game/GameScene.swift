@@ -501,22 +501,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameTimerDelegate, GameForeg
         if sharedRecorder.isAvailable == true && record == true{
             print("\n\n\nWE WILL RECORD THIS TIME\n\n\n\n")
             sharedRecorder.startRecording(withMicrophoneEnabled: false , handler: { (error: Error?) in
-                if error != nil {
-                    //pause game and show error
-                    print(error)
-                    self.pauseGame()
-                }
-                else {
-                    self.recordingLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.width * 0.15, height: 35))
-                    self.recordingLabel.text = "•REC"
-                    self.recordingLabel.textAlignment = .center
-                    self.recordingLabel.backgroundColor = UIColor.white.withAlphaComponent(0.7)
-                    self.recordingLabel.layer.cornerRadius = 35 / 2
-                    self.recordingLabel.layer.masksToBounds = true
-                    self.recordingLabel.font = UIFont(name: "Rubik", size: 23)
-                    self.recordingLabel.textColor = .red
-                    self.recordingLabel.center = CGPoint(x: self.backgroundView.frame.maxX - self.recordingLabel.frame.width / 2 - 5, y: self.backgroundView.frame.minY + 25)
-                    self.backgroundView.addSubview(self.recordingLabel)
+                DispatchQueue.main.async {
+                    if error != nil {
+                        //pause game and show error
+                        print(error)
+                        self.pauseGame()
+                    }
+                    else {
+                        self.recordingLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.width * 0.15, height: 35))
+                        self.recordingLabel.text = "•REC"
+                        self.recordingLabel.textAlignment = .center
+                        self.recordingLabel.backgroundColor = UIColor.white.withAlphaComponent(0.7)
+                        self.recordingLabel.layer.cornerRadius = 35 / 2
+                        self.recordingLabel.layer.masksToBounds = true
+                        self.recordingLabel.font = UIFont(name: "Rubik", size: 23)
+                        self.recordingLabel.textColor = .red
+                        self.recordingLabel.center = CGPoint(x: self.backgroundView.frame.maxX - self.recordingLabel.frame.width / 2 - 5, y: self.backgroundView.frame.minY + 25)
+                        self.backgroundView.addSubview(self.recordingLabel)
+                    }
                 }
             })
         }
@@ -1064,11 +1066,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameTimerDelegate, GameForeg
                 }
                 
                 /* try to report the progress to the Game Center */
-                GKAchievement.report([achievement], withCompletionHandler:  {(error:NSError?) -> Void in
+                GKAchievement.report([achievement], withCompletionHandler:  {(error: Error?) -> Void in
                     if error != nil {
                         print("Couldn't save achievement (\(uAchievementId)) progress to \(uProgress) %", terminator: "")
                     }
-                } as! (Error?) -> Void)
+                })
             }
             /* Is Finish */
         } else {
@@ -1084,13 +1086,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameTimerDelegate, GameForeg
         let lookupAchievement:GKAchievement? = gameCenterAchievements[uAchievementId]
         
         if let achievement = lookupAchievement {
-            GKAchievement.resetAchievements(completionHandler: { (error:NSError?) -> Void in
+            GKAchievement.resetAchievements(completionHandler: { (error: Error?) -> Void in
                 if error != nil {
                     print("Couldn't Reset achievement (\(uAchievementId))", terminator: "")
                 } else {
                     print("Reset achievement (\(uAchievementId))", terminator: "")
                 }
-            } as! (Error?) -> Void)
+            })
             
         } else {
             print("No achievement with ID (\(uAchievementId)) was found, no progress for this one was recoreded yet. Create achievement now.", terminator: "")
@@ -1110,13 +1112,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameTimerDelegate, GameForeg
             let lookupAchievement:GKAchievement? =  lookupAchievement.1
             
             if let achievement = lookupAchievement {
-                GKAchievement.resetAchievements(completionHandler: { (error:NSError?) -> Void in
+                GKAchievement.resetAchievements(completionHandler: { (error: Error?) -> Void in
                     if error != nil {
                         print("Couldn't Reset achievement (\(achievementID))", terminator: "")
                     } else {
                         print("Reset achievement (\(achievementID))", terminator: "")
                     }
-                } as! (Error?) -> Void)
+                })
                 
             } else {
                 print("No achievement with ID (\(achievementID)) was found, no progress for this one was recoreded yet. Create achievement now.", terminator: "")
