@@ -45,7 +45,7 @@ class BulletCountView: UIView {
         label = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 30))
         label.text = "\(bulletCount)"
         label.center = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2)
-        label.font = UIFont(name: "Ubuntu", size: 32)
+        label.font = UIFont(name: "Audiowide", size: 32)
         label.textColor = UIColor(rgba: "#00335b")
         label.textAlignment = .center
         label.layer.shadowColor = UIColor.black.cgColor;

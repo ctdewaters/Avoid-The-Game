@@ -9,9 +9,6 @@
 /* Begin PBXBuildFile section */
 		B8FD0A3720B316C2009F657F /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = B8FD0A1620B316C2009F657F /* spark.png */; };
 		B8FD0A3820B316C2009F657F /* DefenseParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = B8FD0A1720B316C2009F657F /* DefenseParticle.sks */; };
-		B8FD0A3920B316C2009F657F /* Ubuntu-M.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B8FD0A1920B316C2009F657F /* Ubuntu-M.ttf */; };
-		B8FD0A3A20B316C3009F657F /* Ubuntu-L.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B8FD0A1A20B316C2009F657F /* Ubuntu-L.ttf */; };
-		B8FD0A3B20B316C3009F657F /* Ubuntu-C.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B8FD0A1B20B316C2009F657F /* Ubuntu-C.ttf */; };
 		B8FD0A3C20B316C3009F657F /* avo1d.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B8FD0A1C20B316C2009F657F /* avo1d.xcdatamodeld */; };
 		B8FD0A3D20B316C3009F657F /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FD0A2120B316C2009F657F /* IntroViewController.swift */; };
 		B8FD0A3E20B316C3009F657F /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FD0A2220B316C2009F657F /* GameViewController.swift */; };
@@ -31,15 +28,14 @@
 		B8FD0A5420B3221C009F657F /* BulletCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FD0A5320B3221C009F657F /* BulletCountView.swift */; };
 		B8FD0A5620B3224A009F657F /* ForegroundGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FD0A5520B3224A009F657F /* ForegroundGameView.swift */; };
 		B8FD0A5820B322AF009F657F /* AvoidButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FD0A5720B322AF009F657F /* AvoidButton.swift */; };
+		B8FD0A5B20B34059009F657F /* Audiowide-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B8FD0A5A20B34059009F657F /* Audiowide-Regular.ttf */; };
+		B8FD0A5D20B3406F009F657F /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B8FD0A5C20B3406F009F657F /* Rubik-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B8AC8DAE1A5191F1004D0F12 /* Avoid: The Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Avoid: The Game.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8FD0A1620B316C2009F657F /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		B8FD0A1720B316C2009F657F /* DefenseParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = DefenseParticle.sks; sourceTree = "<group>"; };
-		B8FD0A1920B316C2009F657F /* Ubuntu-M.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-M.ttf"; sourceTree = "<group>"; };
-		B8FD0A1A20B316C2009F657F /* Ubuntu-L.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-L.ttf"; sourceTree = "<group>"; };
-		B8FD0A1B20B316C2009F657F /* Ubuntu-C.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-C.ttf"; sourceTree = "<group>"; };
 		B8FD0A1D20B316C2009F657F /* avo1d2.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = avo1d2.0.xcdatamodel; sourceTree = "<group>"; };
 		B8FD0A1E20B316C2009F657F /* avo1d.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = avo1d.xcdatamodel; sourceTree = "<group>"; };
 		B8FD0A1F20B316C2009F657F /* avo1d1.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = avo1d1.1.xcdatamodel; sourceTree = "<group>"; };
@@ -65,6 +61,8 @@
 		B8FD0A5320B3221C009F657F /* BulletCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletCountView.swift; sourceTree = "<group>"; };
 		B8FD0A5520B3224A009F657F /* ForegroundGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForegroundGameView.swift; sourceTree = "<group>"; };
 		B8FD0A5720B322AF009F657F /* AvoidButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvoidButton.swift; sourceTree = "<group>"; };
+		B8FD0A5A20B34059009F657F /* Audiowide-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Audiowide-Regular.ttf"; sourceTree = "<group>"; };
+		B8FD0A5C20B3406F009F657F /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,9 +123,8 @@
 		B8FD0A1820B316C2009F657F /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				B8FD0A1920B316C2009F657F /* Ubuntu-M.ttf */,
-				B8FD0A1A20B316C2009F657F /* Ubuntu-L.ttf */,
-				B8FD0A1B20B316C2009F657F /* Ubuntu-C.ttf */,
+				B8FD0A5A20B34059009F657F /* Audiowide-Regular.ttf */,
+				B8FD0A5C20B3406F009F657F /* Rubik-Regular.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -271,9 +268,8 @@
 				B8FD0A4E20B31E19009F657F /* LaunchScreen.xib in Resources */,
 				B8FD0A5120B31E68009F657F /* Main.storyboard in Resources */,
 				B8FD0A4120B316C3009F657F /* Images.xcassets in Resources */,
-				B8FD0A3A20B316C3009F657F /* Ubuntu-L.ttf in Resources */,
-				B8FD0A3B20B316C3009F657F /* Ubuntu-C.ttf in Resources */,
-				B8FD0A3920B316C2009F657F /* Ubuntu-M.ttf in Resources */,
+				B8FD0A5B20B34059009F657F /* Audiowide-Regular.ttf in Resources */,
+				B8FD0A5D20B3406F009F657F /* Rubik-Regular.ttf in Resources */,
 				B8FD0A3820B316C2009F657F /* DefenseParticle.sks in Resources */,
 				B8FD0A4220B316C3009F657F /* GameScene.sks in Resources */,
 				B8FD0A4B20B316C3009F657F /* Info.plist in Resources */,

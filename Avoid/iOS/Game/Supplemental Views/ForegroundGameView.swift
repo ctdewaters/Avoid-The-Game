@@ -66,7 +66,7 @@ class ForegroundGameView: UIView, Avo1dButtonDelegate {
             titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height * 0.3))
             titleLabel.text = "Game Paused"
             titleLabel.textColor = UIColor(rgba: "#FFFFFF")
-            titleLabel.font = UIFont(name: "Ubuntu", size: 40)
+            titleLabel.font = UIFont(name: "Audiowide", size: 40)
             titleLabel.textAlignment = .center
             titleLabel.center = CGPoint(x: self.center.x, y: self.frame.minY + titleLabel.frame.height / 2)
             self.addSubview(titleLabel)
@@ -89,7 +89,7 @@ class ForegroundGameView: UIView, Avo1dButtonDelegate {
             titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height * 0.3))
             titleLabel.text = "Game Over"
             titleLabel.textColor = UIColor(rgba: "#FFFFFF")
-            titleLabel.font = UIFont(name: "Ubuntu", size: 40)
+            titleLabel.font = UIFont(name: "Audiowide", size: 40)
             titleLabel.textAlignment = .center
             titleLabel.center = CGPoint(x: self.center.x, y: self.frame.minY + titleLabel.frame.height / 2)
             self.addSubview(titleLabel)
@@ -115,11 +115,10 @@ class ForegroundGameView: UIView, Avo1dButtonDelegate {
     
     func displayScoreLabels(_ time: inout Double, timeHighScore: Bool, score: inout Int, newHighScore: Bool) {
         
-        
         timeLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         timeLabel.center = CGPoint(x: self.frame.width / 2 - self.frame.width / 4.5, y: (self.frame.height / 2 + titleLabel.center.y) / 2)
         timeLabel.text =  "\(NSString(format: "%.01f", time) as String)\nSeconds"
-        timeLabel.font = UIFont(name: "Ubuntu", size: 20)
+        timeLabel.font = UIFont(name: "Rubik", size: 20)
         timeLabel.backgroundColor = UIColor.white
         timeLabel.layer.cornerRadius = 50
         timeLabel.textColor = UIColor(rgba: "#00335b")
@@ -132,7 +131,7 @@ class ForegroundGameView: UIView, Avo1dButtonDelegate {
         scoreLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         scoreLabel.center = CGPoint(x: self.frame.width / 2 +  self.frame.width / 4.5, y: (self.frame.height / 2 + titleLabel.center.y) / 2)
         scoreLabel.text = "\(score)\nHits"
-        scoreLabel.font = UIFont(name: "Ubuntu", size: 20)
+        scoreLabel.font = UIFont(name: "Rubik", size: 20)
         scoreLabel.backgroundColor = UIColor(rgba: "#00335b")
         scoreLabel.textColor = UIColor.white
         scoreLabel.layer.cornerRadius = 50
@@ -169,7 +168,7 @@ class ForegroundGameView: UIView, Avo1dButtonDelegate {
     func addViewReplayButton() {
         viewReplayButton = UIButton(frame: CGRect(x: 0, y: 0, width: self.frame.width * 0.3, height: 40))
         viewReplayButton.setTitle("View Replay", for: UIControlState())
-        viewReplayButton.titleLabel?.font = UIFont(name: "Ubuntu", size: 20)
+        viewReplayButton.titleLabel?.font = UIFont(name: "Audiowide", size: 20)
         viewReplayButton.titleLabel?.textColor = UIColor.white
         viewReplayButton.backgroundColor = UIColor(rgba: "#00335b").withAlphaComponent(0.75)
         viewReplayButton.layer.cornerRadius = 20
@@ -223,7 +222,7 @@ class ForegroundGameView: UIView, Avo1dButtonDelegate {
         calibratedLabel.transform = CGAffineTransform(scaleX: 0, y: 1)
         calibratedLabel.center = CGPoint(x: self.frame.width / 2, y: calibrateButton.center.y + calibrateButton.frame.height / 2 + 60)
         calibratedLabel.textAlignment = .center
-        calibratedLabel.font = UIFont(name: "Ubuntu", size: 30)
+        calibratedLabel.font = UIFont(name: "Audiowide", size: 20)
         calibratedLabel.textColor = .lightText
         self.addSubview(calibratedLabel)
     }

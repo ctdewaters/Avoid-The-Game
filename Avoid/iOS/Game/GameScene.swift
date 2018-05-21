@@ -183,7 +183,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameTimerDelegate, GameForeg
         timeLabel.layer.masksToBounds = true
         timeLabel.layer.borderColor = UIColor(rgba: "#00335b").cgColor
         timeLabel.textAlignment = .center
-        timeLabel.font = UIFont(name: "Ubuntu", size: fontSize)
+        timeLabel.font = UIFont(name: "Rubik", size: fontSize)
         timeLabel.textColor = UIColor(rgba: "#00335b")
         timeLabel.backgroundColor = .white
         self.backgroundView.addSubview(timeLabel)
@@ -198,7 +198,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameTimerDelegate, GameForeg
         scoreLabel.layer.cornerRadius = self.frame.width * 0.1
         scoreLabel.layer.masksToBounds = true
         scoreLabel.layer.borderColor = UIColor.white.cgColor
-        scoreLabel.font = UIFont(name: "Ubuntu", size: fontSize)
+        scoreLabel.font = UIFont(name: "Audiowide", size: fontSize)
         scoreLabel.textAlignment = .center
         scoreLabel.textColor = .white
         scoreLabel.backgroundColor = UIColor(rgba: "#00335b")
@@ -281,8 +281,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameTimerDelegate, GameForeg
         notificationLabel.position = CGPoint(x: rightBound / 2, y: upperBound / 2)
         notificationLabel.alpha = 0.75
         notificationLabel.fontColor = SKColor.white
-        notificationLabel.fontSize = 25
-        notificationLabel.fontName = "Ubuntu-Light"
+        notificationLabel.fontSize = 20
+        notificationLabel.fontName = "Audiowide"
         
         let returnToRegularSize = SKAction.scaleX(to: 1, y: 1, duration: 0.2)
         userNode.run(returnToRegularSize)
@@ -359,7 +359,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameTimerDelegate, GameForeg
         
         bulletCountView.label.layer.add(animator.caBasicAnimation(0, to: 2 * M_PI, repeatCount: 0, keyPath: "transform.rotation.x", duration: 0.35), forKey: "rotateUp")
         
-        bulletCountView.label.font = UIFont(name: "Ubuntu", size: 22)
+        bulletCountView.label.font = UIFont(name: "Audiowide", size: 22)
         bulletCountView.label.text = "Reloading"
         
     }
@@ -383,7 +383,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameTimerDelegate, GameForeg
             remainingBullets = 15
             
             bulletCountView.label.layer.add(animator.caBasicAnimation(2 * M_PI, to: 0, repeatCount: 0, keyPath: "transform.rotation.x", duration: 0.35), forKey: "rotateDown")
-            bulletCountView.label.font = UIFont(name: "Ubuntu", size: 22)
+            bulletCountView.label.font = UIFont(name: "Audiowide", size: 22)
             bulletCountView.label.text = "\(remainingBullets)"
             
         }
@@ -500,7 +500,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameTimerDelegate, GameForeg
         
         if sharedRecorder.isAvailable == true && record == true{
             print("\n\n\nWE WILL RECORD THIS TIME\n\n\n\n")
-            sharedRecorder.startRecording(withMicrophoneEnabled: false , handler: { (error: NSError?) in
+            sharedRecorder.startRecording(withMicrophoneEnabled: false , handler: { (error: Error?) in
                 if error != nil {
                     //pause game and show error
                     print(error)
@@ -513,12 +513,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameTimerDelegate, GameForeg
                     self.recordingLabel.backgroundColor = UIColor.white.withAlphaComponent(0.7)
                     self.recordingLabel.layer.cornerRadius = 35 / 2
                     self.recordingLabel.layer.masksToBounds = true
-                    self.recordingLabel.font = UIFont(name: "Ubuntu", size: 23)
+                    self.recordingLabel.font = UIFont(name: "Rubik", size: 23)
                     self.recordingLabel.textColor = .red
                     self.recordingLabel.center = CGPoint(x: self.backgroundView.frame.maxX - self.recordingLabel.frame.width / 2 - 5, y: self.backgroundView.frame.minY + 25)
                     self.backgroundView.addSubview(self.recordingLabel)
                 }
-            } as! (Error?) -> Void)
+            })
         }
         
         timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(GameScene.increaseTime), userInfo: nil, repeats: true)
