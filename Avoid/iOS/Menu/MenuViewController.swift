@@ -139,9 +139,7 @@ class MenuViewController: UIViewController, GKGameCenterControllerDelegate, Back
         
         //Load current usernode texture
         self.loadUserDesign()
-        
-        var int = 0
-        
+                
         if canUseGameCenter != nil {
             if canUseGameCenter == true {
                 loadHighestLocalPlayerScore(leaderboardID: "defenseHighScores")
@@ -388,7 +386,7 @@ class MenuViewController: UIViewController, GKGameCenterControllerDelegate, Back
         defenseHSLabel.backgroundColor = UIColor(rgba: "#00335b").withAlphaComponent(0.75)
         defenseHSLabel.font = UIFont(name: "Rubik", size: fontSize)
         
-        defenseHSLabel.text = String(format: "\(score)\n\nHits")
+        defenseHSLabel.text = String(format: "\(score)\nHits")
         
         animator.complexAnimationForDuration(0.25, delay: 0, animation1: {
             self.defenseHSLabel.transform = CGAffineTransform(scaleX: 1.25, y: 1.25)
@@ -411,7 +409,7 @@ class MenuViewController: UIViewController, GKGameCenterControllerDelegate, Back
         timeHSLabel.textColor = UIColor(rgba: "#00335b")
         timeHSLabel.font = UIFont(name: "Rubik", size: fontSize)
         
-        timeHSLabel.text = "\(NSString(format: "%.01f", score) as String)\n\nSeconds"
+        timeHSLabel.text = "\(NSString(format: "%.01f", score) as String)\nSeconds"
         
         
         animator.complexAnimationForDuration(0.25, delay: 0, animation1: {

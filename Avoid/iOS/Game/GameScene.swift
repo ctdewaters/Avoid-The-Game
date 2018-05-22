@@ -13,10 +13,14 @@ import GameKit
 import UIKit
 import ReplayKit
 import DeviceKit
+import GoogleMobileAds
 
 protocol GameTimerDelegate{
     func increaseDifficulty()
 }
+
+var gamesPlayed = 0
+var shouldShowAd = false
 
 //Bullet textures
 let blueBulletImage = UIImage(named: "blueBullet")
@@ -184,11 +188,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameTimerDelegate, GameForeg
                         self.recordingLabel.backgroundColor = UIColor.white.withAlphaComponent(0.7)
                         self.recordingLabel.layer.cornerRadius = 35 / 2
                         self.recordingLabel.layer.masksToBounds = true
-                        self.recordingLabel.font = UIFont(name: "Rubik", size: 23)
+                        self.recordingLabel.font = UIFont(name: "Rubik", size: 20)
                         self.recordingLabel.textColor = .red
-                        self.recordingLabel.center = CGPoint(x: self.backgroundView.frame.maxX - self.recordingLabel.frame.width / 2 - 5, y: self.backgroundView.frame.minY + 25)
+                        self.recordingLabel.center = CGPoint(x: self.backgroundView.frame.maxX - self.recordingLabel.frame.width / 2 - 20, y: self.backgroundView.frame.minY + 25)
                         if Device() == .iPhoneX {
-                            self.recordingLabel.center.y += 40
+                            self.recordingLabel.center.y += 10
                         }
                         self.backgroundView.addSubview(self.recordingLabel)
                     }
@@ -210,7 +214,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameTimerDelegate, GameForeg
         timeLabel.layer.masksToBounds = true
         timeLabel.layer.borderColor = UIColor(rgba: "#00335b").cgColor
         timeLabel.textAlignment = .center
-        timeLabel.font = UIFont(name: "Rubik", size: fontSize)
+        timeLabel.font = UIFont(name: "Audiowide", size: fontSize)
         timeLabel.textColor = UIColor(rgba: "#00335b")
         timeLabel.backgroundColor = .white
         self.backgroundView.addSubview(timeLabel)
@@ -566,11 +570,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameTimerDelegate, GameForeg
                         self.recordingLabel.backgroundColor = UIColor.white.withAlphaComponent(0.7)
                         self.recordingLabel.layer.cornerRadius = 35 / 2
                         self.recordingLabel.layer.masksToBounds = true
-                        self.recordingLabel.font = UIFont(name: "Rubik", size: 23)
+                        self.recordingLabel.font = UIFont(name: "Rubik", size: 20)
                         self.recordingLabel.textColor = .red
-                        self.recordingLabel.center = CGPoint(x: self.backgroundView.frame.maxX - self.recordingLabel.frame.width / 2 - 5, y: self.backgroundView.frame.minY + 25)
+                        self.recordingLabel.center = CGPoint(x: self.backgroundView.frame.maxX - self.recordingLabel.frame.width / 2 - 20, y: self.backgroundView.frame.minY + 25)
                         if Device() == .iPhoneX {
-                            self.recordingLabel.center.y += 40
+                            self.recordingLabel.center.y += 10
                         }
                         self.backgroundView.addSubview(self.recordingLabel)
                     }
@@ -627,7 +631,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameTimerDelegate, GameForeg
     }
     
     func resumeGame(){
-        
         menu.animateOut()
         
         timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(GameScene.increaseTime), userInfo: nil, repeats: true)
@@ -649,7 +652,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameTimerDelegate, GameForeg
         bullets.speed = 1
         defenseBullets?.speed = 1
         userNode.speed = 1
-        
         if reloading == true {
             reloadTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(GameScene.decreaseReloadTime), userInfo: nil, repeats: true)
             setReloadingAnimation()
@@ -880,9 +882,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameTimerDelegate, GameForeg
     func previewController(_ previewController: RPPreviewViewController, didFinishWithActivityTypes activityTypes: Set<String>) {
         
     }
-    
+        
     //runs when user loses a game
     func gameOver(){
+        gamesPlayed += 1
+        
+        if gamesPlayed % 3 == 0 {
+            //Show ad.
+            AppDelegate.presentAd(toViewController: gameVC!)
+        }
         
         self.view?.addSubview(menu)
         menu.showMenu("gameOver")
@@ -1106,7 +1114,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameTimerDelegate, GameForeg
             /* Is Finish */
         } else {
             /* never added  progress for this achievement, create achievement now, recall to add progress */
-            print("No achievement with ID (\(uAchievementId)) was found, no progress for this one was recoreded yet. Create achievement now.", terminator: "")
+            print("No achievement with ID (\(uAchievementId)) was found, no progress for this one was recorded yet. Create achievement now.", terminator: "")
             gameCenterAchievements[uAchievementId] = GKAchievement(identifier: uAchievementId)
             /* recursive recall this func now that the achievement exist */
             addProgressToAnAchievement(progress: uProgress, achievementIdentifier: uAchievementId)
@@ -1126,7 +1134,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameTimerDelegate, GameForeg
             })
             
         } else {
-            print("No achievement with ID (\(uAchievementId)) was found, no progress for this one was recoreded yet. Create achievement now.", terminator: "")
+            print("No achievement with ID (\(uAchievementId)) was found, no progress for this one was recorded yet. Create achievement now.", terminator: "")
             gameCenterAchievements[uAchievementId] = GKAchievement(identifier: uAchievementId)
             /* recursive recall this func now that the achievement exist */
             self.resetAchievements(achievementIdentifier: uAchievementId)
@@ -1152,7 +1160,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameTimerDelegate, GameForeg
                 })
                 
             } else {
-                print("No achievement with ID (\(achievementID)) was found, no progress for this one was recoreded yet. Create achievement now.", terminator: "")
+                print("No achievement with ID (\(achievementID)) was found, no progress for this one was recorded yet. Create achievement now.", terminator: "")
                 gameCenterAchievements[achievementID] = GKAchievement(identifier: achievementID)
                 /* recursive recall this func now that the achievement exist */
                 self.resetAchievements(achievementIdentifier: achievementID)

@@ -43,12 +43,6 @@ class ForegroundGameView: UIView, AvoidButtonDelegate {
         self.backgroundColor = UIColor.clear
         background = UIVisualEffectView(effect: UIBlurEffect(style: .light))
         background.frame = frame
-        
-        self.resumeButton = AvoidButton(frame: CGRect(x: 0, y: 0, width: self.frame.width * 0.3, height: self.frame.width * 0.3))
-        self.calibrateButton = AvoidButton(frame: CGRect(x: 0, y: 0, width: self.frame.width * 0.3, height: self.frame.width * 0.3))
-        self.restartButton = AvoidButton(frame: CGRect(x: 0, y: 0, width: self.frame.width * 0.3, height: self.frame.width * 0.3))
-        self.exitButton = AvoidButton(frame: CGRect(x: 0, y: 0, width: self.frame.width * 0.3, height: self.frame.width * 0.3))
-
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -120,7 +114,6 @@ class ForegroundGameView: UIView, AvoidButtonDelegate {
     }
     
     func displayScoreLabels(_ time: inout Double, timeHighScore: Bool, score: inout Int, newHighScore: Bool) {
-        
         timeLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         timeLabel.center = CGPoint(x: self.frame.width / 2 - self.frame.width / 4.5, y: (self.frame.height / 2 + titleLabel.center.y) / 2)
         timeLabel.text =  "\(NSString(format: "%.01f", time) as String)\nSeconds"
@@ -172,9 +165,9 @@ class ForegroundGameView: UIView, AvoidButtonDelegate {
     }
     
     func addViewReplayButton() {
-        viewReplayButton = UIButton(frame: CGRect(x: 0, y: 0, width: self.frame.width * 0.3, height: 40))
+        viewReplayButton = UIButton(frame: CGRect(x: 0, y: 0, width: self.frame.width * 0.4, height: 40))
         viewReplayButton.setTitle("View Replay", for: UIControlState())
-        viewReplayButton.titleLabel?.font = UIFont(name: "Audiowide", size: 20)
+        viewReplayButton.titleLabel?.font = UIFont(name: "Audiowide", size: 15)
         viewReplayButton.titleLabel?.textColor = UIColor.white
         viewReplayButton.backgroundColor = UIColor(rgba: "#00335b").withAlphaComponent(0.75)
         viewReplayButton.layer.cornerRadius = 20
@@ -197,14 +190,14 @@ class ForegroundGameView: UIView, AvoidButtonDelegate {
     }
     
     
-    func setUpMenuButton (_ button: AvoidButton, withImage image: UIImage, atCenter center: CGPoint, withSelector selector: Selector) {
-        button.backgroundColor = UIColor.white
-        button.setImage(image, for: UIControlState())
-        button.layer.cornerRadius = button.frame.width / 2
+    func setUpMenuButton (_ button: AvoidButton, withTitle title: String, andTitleColor titleColor: UIColor, atCenter center: CGPoint, withSelector selector: Selector) {
+        button.backgroundColor = UIColor.white.withAlphaComponent(0.95)
+        button.setTitle(title, for: .normal)
+        button.setTitleColor(titleColor, for: .normal)
+        button.titleLabel?.font = UIFont(name: "Audiowide", size: 15)
+        button.layer.cornerRadius = 10
         button.layer.zPosition += button.frame.width
         button.layer.masksToBounds = true
-        button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor(rgba: "#00335b").cgColor
         button.center = center
         button.addTarget(self, action: selector, for: UIControlEvents.touchUpInside)
         button.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
@@ -224,7 +217,7 @@ class ForegroundGameView: UIView, AvoidButtonDelegate {
         calibratedLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 50))
         calibratedLabel.text = "Device Recalibrated"
         calibratedLabel.transform = CGAffineTransform(scaleX: 0, y: 1)
-        calibratedLabel.center = CGPoint(x: self.frame.width / 2, y: calibrateButton.center.y + calibrateButton.frame.height / 2 + 60)
+        calibratedLabel.center = CGPoint(x: self.frame.width / 2, y: calibrateButton.center.y + calibrateButton.frame.height / 2 + 120)
         calibratedLabel.textAlignment = .center
         calibratedLabel.font = UIFont(name: "Audiowide", size: 20)
         calibratedLabel.textColor = .lightText
@@ -253,16 +246,24 @@ class ForegroundGameView: UIView, AvoidButtonDelegate {
     }
     
     func setUpPauseMenu () {
-        setUpMenuButton(calibrateButton, withImage: UIImage(named: "calibrateButton")!, atCenter: CGPoint(x: self.frame.width / 2, y: self.frame.midY + self.frame.width * 0.3), withSelector: #selector(ForegroundGameView.didSelectButton(_:)))
-        setUpMenuButton(resumeButton, withImage: UIImage(named: "resumeButton")!, atCenter: CGPoint(x: (self.frame.width / 2) - self.frame.width * 0.3, y: self.frame.midY), withSelector: #selector(ForegroundGameView.didSelectButton(_:)))
-        setUpMenuButton(exitButton, withImage: UIImage(named: "menuButton")!, atCenter: CGPoint(x: (self.frame.width / 2) + (self.frame.width * 0.3), y: self.frame.midY), withSelector: #selector(ForegroundGameView.didSelectButton(_:)))
+        self.resumeButton = AvoidButton(frame: CGRect(x: 0, y: 0, width: self.frame.width * 0.3, height: 40))
+        self.calibrateButton = AvoidButton(frame: CGRect(x: 0, y: 0, width: self.frame.width * 0.3, height: 40))
+        self.exitButton = AvoidButton(frame: CGRect(x: 0, y: 0, width: self.frame.width * 0.3, height: 40))
+        
+        setUpMenuButton(calibrateButton, withTitle: "Recalibrate", andTitleColor: UIColor(rgba: "#30c62b"), atCenter: CGPoint(x: self.frame.width / 2, y: self.frame.midY + ((self.frame.width * 0.3) / 2)), withSelector: #selector(ForegroundGameView.didSelectButton(_:)))
+        setUpMenuButton(resumeButton, withTitle: "Resume", andTitleColor: UIColor(rgba: "#00335b"), atCenter: CGPoint(x: (self.frame.width / 2) - (self.frame.width * 0.3) + 20, y: self.frame.midY), withSelector: #selector(ForegroundGameView.didSelectButton(_:)))
+        setUpMenuButton(exitButton, withTitle: "Quit", andTitleColor: .red, atCenter: CGPoint(x: (self.frame.width / 2) + (self.frame.width * 0.3) - 20, y: self.frame.midY), withSelector: #selector(ForegroundGameView.didSelectButton(_:)))
         setCalibratedLabel()
     }
     
     func setUpGameOverMenu () {
-        setUpMenuButton(calibrateButton, withImage: UIImage(named: "calibrateButton")!, atCenter: CGPoint(x: self.frame.width / 2, y: self.frame.midY + (self.frame.width * 0.3)), withSelector: #selector(ForegroundGameView.didSelectButton(_:)))
-        setUpMenuButton(restartButton, withImage: UIImage(named: "restartButton")!, atCenter: CGPoint(x: (self.frame.width / 2) - (self.frame.width * 0.3), y: self.frame.midY), withSelector: #selector(ForegroundGameView.didSelectButton(_:)))
-        setUpMenuButton(exitButton, withImage: UIImage(named: "menuButton")!, atCenter: CGPoint(x: (self.frame.width / 2) + (self.frame.width * 0.3), y: self.frame.midY), withSelector: #selector(ForegroundGameView.didSelectButton(_:)))
+        self.calibrateButton = AvoidButton(frame: CGRect(x: 0, y: 0, width: self.frame.width * 0.3, height: 40))
+        self.restartButton = AvoidButton(frame: CGRect(x: 0, y: 0, width: self.frame.width * 0.3, height: 40))
+        self.exitButton = AvoidButton(frame: CGRect(x: 0, y: 0, width: self.frame.width * 0.3, height: 40))
+
+        setUpMenuButton(calibrateButton, withTitle: "Recalibrate", andTitleColor: UIColor(rgba: "#30c62b"), atCenter: CGPoint(x: self.frame.width / 2, y: self.frame.midY + ((self.frame.width * 0.3) / 2)), withSelector: #selector(ForegroundGameView.didSelectButton(_:)))
+        setUpMenuButton(restartButton, withTitle: "Restart", andTitleColor: UIColor(rgba: "#00335b"), atCenter: CGPoint(x: (self.frame.width / 2) - (self.frame.width * 0.3) + 20, y: self.frame.midY), withSelector: #selector(ForegroundGameView.didSelectButton(_:)))
+        setUpMenuButton(exitButton, withTitle: "Quit", andTitleColor: .red, atCenter: CGPoint(x: (self.frame.width / 2) + (self.frame.width * 0.3) - 20, y: self.frame.midY), withSelector: #selector(ForegroundGameView.didSelectButton(_:)))
         setCalibratedLabel()
     }
     
@@ -286,9 +287,6 @@ class ForegroundGameView: UIView, AvoidButtonDelegate {
     }
     
     func animateOut() {
-        self.selectedButton.layer.add(animator.caBasicAnimation(0, to: 2 * M_PI, repeatCount: 0, keyPath: "transform.rotation.y", duration: 0.35), forKey: "rotateSelectedButton")
-        self.selectedButton.layer.add(animator.caBasicAnimation(0, to: 2 * M_PI, repeatCount: 0, keyPath: "transform.rotation.x", duration: 0.35), forKey: "rotateSelectedButtonX")
-        
         animator.simpleAnimationForDuration(0.35, animation: {
             self.selectedButton.alpha = 0
             self.calibrateButton.alpha = 0
@@ -306,7 +304,6 @@ class ForegroundGameView: UIView, AvoidButtonDelegate {
             
         }, animation2: {
             animator.complexAnimationForDuration(0.35, delay: 0, animation1: {
-                self.selectedButton.transform = CGAffineTransform(scaleX: 0.000000001, y: 0.000000001)
             }, animation2: {
                 for v in self.subviews {
                     v.removeFromSuperview()
