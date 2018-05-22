@@ -268,6 +268,7 @@ class ForegroundGameView: UIView, AvoidButtonDelegate {
     }
     
     @objc func didSelectButton (_ sender: UIButton) {
+        sender.unhighlight()
         selectedButton = sender
         
         switch sender {

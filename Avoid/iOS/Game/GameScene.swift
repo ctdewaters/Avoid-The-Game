@@ -342,10 +342,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameTimerDelegate, GameForeg
     }
     
     @objc func stopUpdates(){
-        self.motionManager!.stopDeviceMotionUpdates()
-        if calibrateTimer != nil {
-            calibrateTimer.invalidate()
-            calibrateTimer = nil
+        if self.motionManager != nil {
+            self.motionManager!.stopDeviceMotionUpdates()
+            if calibrateTimer != nil {
+                calibrateTimer.invalidate()
+                calibrateTimer = nil
+            }
         }
     }
     
@@ -887,7 +889,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameTimerDelegate, GameForeg
     func gameOver(){
         gamesPlayed += 1
         
-        if gamesPlayed % 3 == 0 {
+        if gamesPlayed % 3 == 0 || gamesPlayed == 1 {
             //Show ad.
             AppDelegate.presentAd(toViewController: gameVC!)
         }

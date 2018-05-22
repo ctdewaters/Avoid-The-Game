@@ -111,6 +111,7 @@ class UserNodePicker: UIView, UIScrollViewDelegate, UIImagePickerControllerDeleg
     }
     
     @objc func didSelectTexture(sender: UIButton) {
+        sender.unhighlight()
         
         if sender != selectedNodeButton {
             

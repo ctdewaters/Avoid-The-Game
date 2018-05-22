@@ -171,6 +171,7 @@ class MenuViewController: UIViewController, GKGameCenterControllerDelegate, Back
     }
     
     @IBAction func toggleRecordGame(sender: UIButton) {
+        sender.unhighlight()
         recordGame = (recordGame == true) ? false : true
         savePersonalDesignChanges()
         print(recordGame)
@@ -184,6 +185,7 @@ class MenuViewController: UIViewController, GKGameCenterControllerDelegate, Back
     }
     
     @IBAction func userDidOpenNodePicker(sender: UIButton) {
+        sender.unhighlight()
         userNodePicker.center = sender.center
         userNodePicker.activate(withImage: sender.imageView!.image!)
         animator.simpleAnimationForDuration(0.3, animation: {
@@ -225,6 +227,7 @@ class MenuViewController: UIViewController, GKGameCenterControllerDelegate, Back
     }
     
     @IBAction func changeBackground(sender: UIButton) {
+        sender.unhighlight()
         animator.simpleAnimationForDuration(0.1, animation: {
             sender.transform = .identity
         })
@@ -309,6 +312,7 @@ class MenuViewController: UIViewController, GKGameCenterControllerDelegate, Back
     }
     
     @IBAction func goToGame(sender: UIButton) {
+        sender.unhighlight()
         animator.simpleAnimationForDuration(0.1, animation: {
             sender.transform = .identity
         })
@@ -329,7 +333,7 @@ class MenuViewController: UIViewController, GKGameCenterControllerDelegate, Back
     
 
     @IBAction func showGameCenter(sender: UIButton) {
-        
+        sender.unhighlight()
         animator.simpleAnimationForDuration(0.1, animation: {
             sender.transform = .identity
         })

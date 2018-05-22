@@ -145,6 +145,7 @@ class BackgroundSwitcher: UIView, UIScrollViewDelegate, UIImagePickerControllerD
     }
     
     func animateOut(sender: UIButton?){
+        sender?.unhighlight()
         removeBlur()
         
         animator.complexAnimationForDuration(0.5, delay: 0, animation1: {
@@ -159,6 +160,7 @@ class BackgroundSwitcher: UIView, UIScrollViewDelegate, UIImagePickerControllerD
     
     //MARK: - Image Picker
     @objc func showImagePicker(sender: UIButton) {
+        sender.unhighlight()
         imagePicker.allowsEditing = false
         if sender == cameraButton {
             imagePicker.sourceType = .camera
@@ -197,6 +199,7 @@ class BackgroundSwitcher: UIView, UIScrollViewDelegate, UIImagePickerControllerD
     
     //MARK: - New background setup.
     @objc func newBackgroundChosen(sender: UIButton){
+        sender.unhighlight()
         animator.simpleAnimationForDuration(0.1, animation: {
             sender.transform = .identity
         })
