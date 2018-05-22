@@ -13,17 +13,16 @@ import Darwin
 
 public var animator = Animator()
 
-var menu: Menu!
+var menu: MenuViewController!
 var canUseGameCenter: Bool!
 
 let userNodeTextures = ["userNodeNavy", "userNodeWhite", "userNode", "userNodePink", "userNodeYellow", "userNodeGreen"].map{
     UIImage(named: $0)!
 }
 
-class Menu: UIViewController, GKGameCenterControllerDelegate, BackgroundSwitcherDelegate{
+class MenuViewController: UIViewController, GKGameCenterControllerDelegate, BackgroundSwitcherDelegate{
     
-    var localPlayer = GKLocalPlayer.localPlayer()
-    
+    //MARK: - IBOutlets.
     @IBOutlet weak var userNodeButton: UIButton!
     @IBOutlet weak var scoresButton: UIButton!
     @IBOutlet weak var changeBackgroundButton: UIButton!
@@ -32,14 +31,14 @@ class Menu: UIViewController, GKGameCenterControllerDelegate, BackgroundSwitcher
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var recordButton: UIButton!
     
-    var backgroundSelectorOpen = false
-    
-    var leaderboardIdentifier: String? = nil
-    var gameCenterEnabled: Bool = false
-    
     @IBOutlet weak var defenseHSLabel: UILabel!
     @IBOutlet weak var timeHSLabel: UILabel!
     
+    //MARK: - Properties.
+    var localPlayer = GKLocalPlayer.localPlayer()
+    var backgroundSelectorOpen = false
+    var leaderboardIdentifier: String? = nil
+    var gameCenterEnabled: Bool = false
     var highScore = Int()
     var timeHighScore = Double()
     var effect: UIVisualEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
@@ -59,6 +58,7 @@ class Menu: UIViewController, GKGameCenterControllerDelegate, BackgroundSwitcher
     
     var recordGame: Bool!
     
+    //MARK: - UIViewController overrides.
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -70,11 +70,8 @@ class Menu: UIViewController, GKGameCenterControllerDelegate, BackgroundSwitcher
         }
         
         
-        addBackgroundAndStrokeToButton(button: playButton)
-        addBackgroundAndStrokeToButton(button: scoresButton)
-        
-        playButton.showsTouchWhenHighlighted = true
-        scoresButton.showsTouchWhenHighlighted = true
+        self.addBackgroundAndStrokeToButton(button: playButton)
+        self.addBackgroundAndStrokeToButton(button: scoresButton)
         
         userNodePicker = UserNodePicker(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: userNodeButton.frame.height * 2), center: CGPoint(x: view.frame.width / 2, y: userNodeButton.center.y))
         self.view.addSubview(userNodePicker)
@@ -138,19 +135,6 @@ class Menu: UIViewController, GKGameCenterControllerDelegate, BackgroundSwitcher
         loadUserDesign()
     }
     
-    @IBAction func toggleRecordGame(sender: UIButton) {
-        recordGame = (recordGame == true) ? false : true
-        savePersonalDesignChanges()
-        print(recordGame)
-        
-        animator.simpleAnimationForDuration(0.25, animation: {
-            (self.recordGame == true) ? sender.setTitle("Rec: On", for: .normal) : sender.setTitle("Rec: Off", for: .normal)
-            sender.transform = CGAffineTransform(scaleX: 1, y: 1)
-        })
-        
-        
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         
         //Load current usernode texture
@@ -188,22 +172,31 @@ class Menu: UIViewController, GKGameCenterControllerDelegate, BackgroundSwitcher
         
     }
     
+    @IBAction func toggleRecordGame(sender: UIButton) {
+        recordGame = (recordGame == true) ? false : true
+        savePersonalDesignChanges()
+        print(recordGame)
+        
+        animator.simpleAnimationForDuration(0.25, animation: {
+            (self.recordGame == true) ? sender.setTitle("Rec: On", for: .normal) : sender.setTitle("Rec: Off", for: .normal)
+            sender.transform = .identity
+        })
+        
+        
+    }
+    
     @IBAction func userDidOpenNodePicker(sender: UIButton) {
         userNodePicker.center = sender.center
         userNodePicker.activate(withImage: sender.imageView!.image!)
         animator.simpleAnimationForDuration(0.3, animation: {
-            sender.transform = CGAffineTransform(scaleX: 1, y: 1)
+            sender.transform = .identity
         })
     }
     
     func addBackgroundAndStrokeToButton(button: UIButton) {
-        button.layer.cornerRadius = CGFloat((UIDevice.current.userInterfaceIdiom == .pad) ? 64.5 : 49.5)
+        button.layer.cornerRadius = 10
         button.layer.masksToBounds = true
         
-        button.imageView?.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
-        
-        button.layer.borderColor = UIColor(rgba: "#00335b").cgColor
-        button.layer.borderWidth = 5
         button.backgroundColor = UIColor.white.withAlphaComponent(0.9)
         
         button.setTitleColor(UIColor(rgba: "#00335b"), for: .highlighted)
@@ -213,23 +206,13 @@ class Menu: UIViewController, GKGameCenterControllerDelegate, BackgroundSwitcher
     func backgroundSwitcherDidOpen() {
         backgroundSelectorOpen = true
         
-        animator.simpleAnimationForDuration(0.5, animation: {
-            self.backgroundSelector.titleLabel.transform = CGAffineTransform(scaleX: 1, y: 1)
-        })
-        
-        animator.complexAnimationForDuration(0.35, delay: 0, animation1: {
-            self.backgroundSelector.titleLabel.transform = CGAffineTransform(scaleX: 1.25, y: 1.25)
-            }, animation2: {
-                animator.simpleAnimationForDuration(0.35, animation: {
-                    self.backgroundSelector.titleLabel.transform = CGAffineTransform(scaleX: 1, y: 1)
-                })
-        })
     }
     
     func backgroundSwitcherDidClose(chosenImage: UIImage) {
         backgroundSelectorOpen = false
         if chosenImage != backgroundImage.image{
             //Change background image
+                        
             animator.complexAnimationForDuration(0.7, delay: 0, animation1: {
                 self.backgroundImage.alpha = 0
                 }, animation2: {
@@ -245,7 +228,7 @@ class Menu: UIViewController, GKGameCenterControllerDelegate, BackgroundSwitcher
     
     @IBAction func changeBackground(sender: UIButton) {
         animator.simpleAnimationForDuration(0.1, animation: {
-            sender.transform = CGAffineTransform(scaleX: 1, y: 1)
+            sender.transform = .identity
         })
         backgroundSelector.animateIn()
         view.bringSubview(toFront: backgroundSelector)
@@ -329,7 +312,7 @@ class Menu: UIViewController, GKGameCenterControllerDelegate, BackgroundSwitcher
     
     @IBAction func goToGame(sender: UIButton) {
         animator.simpleAnimationForDuration(0.1, animation: {
-            sender.transform = CGAffineTransform(scaleX: 1, y: 1)
+            sender.transform = .identity
         })
         savePersonalDesignChanges()
         self.performSegue(withIdentifier: "goToGame", sender: self)
@@ -350,7 +333,7 @@ class Menu: UIViewController, GKGameCenterControllerDelegate, BackgroundSwitcher
     @IBAction func showGameCenter(sender: UIButton) {
         
         animator.simpleAnimationForDuration(0.1, animation: {
-            sender.transform = CGAffineTransform(scaleX: 1, y: 1)
+            sender.transform = .identity
         })
         
         let gc = GKGameCenterViewController()
@@ -409,10 +392,10 @@ class Menu: UIViewController, GKGameCenterControllerDelegate, BackgroundSwitcher
         
         animator.complexAnimationForDuration(0.25, delay: 0, animation1: {
             self.defenseHSLabel.transform = CGAffineTransform(scaleX: 1.25, y: 1.25)
-            self.defenseHSLabel.superview?.transform = CGAffineTransform(scaleX: 1, y: 1)
+            self.defenseHSLabel.superview?.transform = .identity
             }, animation2: {
                 animator.simpleAnimationForDuration(0.05, animation: {
-                    self.defenseHSLabel.transform = CGAffineTransform(scaleX: 1, y: 1)
+                    self.defenseHSLabel.transform = .identity
                 })
         })
         
@@ -433,10 +416,10 @@ class Menu: UIViewController, GKGameCenterControllerDelegate, BackgroundSwitcher
         
         animator.complexAnimationForDuration(0.25, delay: 0, animation1: {
             self.timeHSLabel.transform = CGAffineTransform(scaleX: 1.25, y: 1.25)
-            self.timeHSLabel.superview?.transform = CGAffineTransform(scaleX: 1, y: 1)
+            self.timeHSLabel.superview?.transform = .identity
             }, animation2: {
                 animator.simpleAnimationForDuration(0.05, animation: {
-                    self.timeHSLabel.transform = CGAffineTransform(scaleX: 1, y: 1)
+                    self.timeHSLabel.transform = .identity
                 })
         })
         

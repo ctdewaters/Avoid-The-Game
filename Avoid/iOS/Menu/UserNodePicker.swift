@@ -85,7 +85,7 @@ class UserNodePicker: UIView, UIScrollViewDelegate, UIImagePickerControllerDeleg
             }
             
             animator.simpleAnimationForDuration(0.7, animation: {
-                button.transform = CGAffineTransform(scaleX: 1, y: 1)
+                button.transform = .identity
                 button.alpha = 1
             })
             
@@ -121,7 +121,7 @@ class UserNodePicker: UIView, UIScrollViewDelegate, UIImagePickerControllerDeleg
             self.bringSubview(toFront: selectedNodeButton)
             
             animator.simpleAnimationForDuration(0.1, animation: {
-                sender.transform = CGAffineTransform(scaleX: 1, y: 1)
+                sender.transform = .identity
             })
             
             animator.complexAnimationForDuration(0.25, delay: 0, animation1: {
@@ -159,7 +159,7 @@ class UserNodePicker: UIView, UIScrollViewDelegate, UIImagePickerControllerDeleg
             self.alpha = 1
         }, animation2: {
             animator.simpleAnimationForDuration(0.2, animation: {
-                self.transform = CGAffineTransform(scaleX: 1, y: 1)
+                self.transform = .identity
                 self.selectedNodeButton.center = CGPoint(x: self.frame.minX + self.selectedNodeButton.frame.width / 2 + 10, y: self.frame.height / 2)
                 self.setScrollViewWithNonSelectedTextures(selectedImage: &image)
             })

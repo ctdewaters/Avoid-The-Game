@@ -8,14 +8,14 @@
 
 import UIKit
 
-protocol Avo1dButtonDelegate {
-    func touchDidEnd(_ button: Avo1dButton)
+protocol AvoidButtonDelegate {
+    func touchDidEnd(_ button: AvoidButton)
 }
 
-class Avo1dButton: UIButton {
+class AvoidButton: UIButton {
     
     var selector: Selector!
-    var delegate: Avo1dButtonDelegate?
+    var delegate: AvoidButtonDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)

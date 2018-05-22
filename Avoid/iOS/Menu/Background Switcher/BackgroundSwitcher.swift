@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DeviceKit
 
 protocol BackgroundSwitcherDelegate {
     func backgroundSwitcherDidOpen()
@@ -57,6 +58,8 @@ class BackgroundSwitcher: UIView, UIScrollViewDelegate, UIImagePickerControllerD
         self.addButtonsToScroller()
         self.addTitleLabel()
         openPosition = CGPoint(x: center.x, y: center.y - frame.height)
+        
+        self.alpha = 0
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -73,7 +76,6 @@ class BackgroundSwitcher: UIView, UIScrollViewDelegate, UIImagePickerControllerD
         titleLabel.textColor = .white
         titleLabel.center = CGPoint(x: center.x, y: scrollView.frame.minY - titleLabel.frame.height / 2)
         self.addSubview(titleLabel)
-        titleLabel.transform = CGAffineTransform(scaleX: 0, y: 0)
     }
 
     func addButtonsToScroller(){
@@ -83,8 +85,8 @@ class BackgroundSwitcher: UIView, UIScrollViewDelegate, UIImagePickerControllerD
             let button = BackgroundSwitcherButton(frame: CGRect(x: 0, y: 0, width: self.frame.width / 3.5, height: (self.frame.height - (self.frame.height / 4))), center: CGPoint(x: currentCenter, y: self.frame.height / 2 - self.frame.height / 8 + (self.frame.height * 0.03)), image: bg!)
             button.addTarget(self, action: #selector(self.newBackgroundChosen(sender:)), for: .touchUpInside)
             
-            if #available(iOS 11.0, *) {
-                button.frame.size.height -= self.safeAreaInsets.bottom
+            if Device() == .iPhoneX {
+                button.frame.size.height -= 15
             }
             
             self.scrollView.addSubview(button)
@@ -119,9 +121,9 @@ class BackgroundSwitcher: UIView, UIScrollViewDelegate, UIImagePickerControllerD
         libraryButton.center = CGPoint(x: self.frame.width / 2 + libraryButton.frame.width / 1.5, y: self.frame.height - libraryButton.frame.height / 1.35)
         libraryButton.imageView?.contentMode = .scaleAspectFit
         
-        if #available(iOS 11.0, *) {
-            libraryButton.frame.origin.y -= self.safeAreaInsets.bottom
-            cameraButton.frame.origin.y -= self.safeAreaInsets.bottom
+        if Device() == .iPhoneX {
+            libraryButton.frame.origin.y -= 30
+            cameraButton.frame.origin.y -= 30
         }
         
         self.addSubview(libraryButton)
@@ -196,7 +198,7 @@ class BackgroundSwitcher: UIView, UIScrollViewDelegate, UIImagePickerControllerD
     //MARK: - New background setup.
     @objc func newBackgroundChosen(sender: UIButton){
         animator.simpleAnimationForDuration(0.1, animation: {
-            sender.transform = CGAffineTransform(scaleX: 1, y: 1)
+            sender.transform = .identity
         })
         sender.layer.add(animator.caBasicAnimation(0, to: 2 * Double.pi, repeatCount: 0, keyPath: "transform.rotation.y", duration: 0.35), forKey: "rotation")
         animateOut(sender: sender)
@@ -213,6 +215,8 @@ class BackgroundSwitcher: UIView, UIScrollViewDelegate, UIImagePickerControllerD
         self.sendSubview(toBack: blur)
         self.layer.masksToBounds = false
         
+        blur.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.tap)))
+        
         animator.simpleAnimationForDuration(0.7, animation: {
             self.blur.alpha = 1
         })
@@ -224,6 +228,11 @@ class BackgroundSwitcher: UIView, UIScrollViewDelegate, UIImagePickerControllerD
         }, animation2: {
             self.blur.removeFromSuperview()
         })
+    }
+    
+    //MARK: - Tap gesture
+    @objc func tap() {
+        self.animateOut(sender: nil)
     }
     
     func getDistanceFromCenter(viewCenter: CGFloat)->CGFloat{

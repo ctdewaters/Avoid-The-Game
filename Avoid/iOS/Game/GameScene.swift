@@ -12,6 +12,7 @@ import CoreData
 import GameKit
 import UIKit
 import ReplayKit
+import DeviceKit
 
 protocol GameTimerDelegate{
     func increaseDifficulty()
@@ -168,6 +169,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameTimerDelegate, GameForeg
         
         setWelcomeScreen()
         
+        if sharedRecorder.isAvailable == true && record == true{
+            sharedRecorder.startRecording(withMicrophoneEnabled: false , handler: { (error: Error?) in
+                DispatchQueue.main.async {
+                    if error != nil {
+                        //pause game and show error
+                        print(error)
+                        self.pauseGame()
+                    }
+                    else {
+                        self.recordingLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.width * 0.15, height: 35))
+                        self.recordingLabel.text = "•REC"
+                        self.recordingLabel.textAlignment = .center
+                        self.recordingLabel.backgroundColor = UIColor.white.withAlphaComponent(0.7)
+                        self.recordingLabel.layer.cornerRadius = 35 / 2
+                        self.recordingLabel.layer.masksToBounds = true
+                        self.recordingLabel.font = UIFont(name: "Rubik", size: 23)
+                        self.recordingLabel.textColor = .red
+                        self.recordingLabel.center = CGPoint(x: self.backgroundView.frame.maxX - self.recordingLabel.frame.width / 2 - 5, y: self.backgroundView.frame.minY + 25)
+                        if Device() == .iPhoneX {
+                            self.recordingLabel.center.y += 40
+                        }
+                        self.backgroundView.addSubview(self.recordingLabel)
+                    }
+                }
+            })
+        }
     }
     
     func setHighScoreAndTimeLabels(){
@@ -251,7 +278,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameTimerDelegate, GameForeg
         backgroundView.addSubview(bulletCountView)
         bulletCountView.transform = CGAffineTransform(scaleX: 0, y: 0)
         animator.complexAnimationForDuration(0.25, delay: 0, animation1: {
-            self.bulletCountView.transform = CGAffineTransform(scaleX: 1, y: 1)
+            self.bulletCountView.transform = .identity
             }, animation2: {
                 animator.simpleAnimationForDuration(0.75, animation: {
                     self.bulletCountView.updateProgressFromFloat(1 - 0.07)
@@ -498,31 +525,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameTimerDelegate, GameForeg
         bullets.speed = 1
         self.addChild(bullets)
         
-        if sharedRecorder.isAvailable == true && record == true{
-            print("\n\n\nWE WILL RECORD THIS TIME\n\n\n\n")
-            sharedRecorder.startRecording(withMicrophoneEnabled: false , handler: { (error: Error?) in
-                DispatchQueue.main.async {
-                    if error != nil {
-                        //pause game and show error
-                        print(error)
-                        self.pauseGame()
-                    }
-                    else {
-                        self.recordingLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.width * 0.15, height: 35))
-                        self.recordingLabel.text = "•REC"
-                        self.recordingLabel.textAlignment = .center
-                        self.recordingLabel.backgroundColor = UIColor.white.withAlphaComponent(0.7)
-                        self.recordingLabel.layer.cornerRadius = 35 / 2
-                        self.recordingLabel.layer.masksToBounds = true
-                        self.recordingLabel.font = UIFont(name: "Rubik", size: 23)
-                        self.recordingLabel.textColor = .red
-                        self.recordingLabel.center = CGPoint(x: self.backgroundView.frame.maxX - self.recordingLabel.frame.width / 2 - 5, y: self.backgroundView.frame.minY + 25)
-                        self.backgroundView.addSubview(self.recordingLabel)
-                    }
-                }
-            })
-        }
-        
         timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(GameScene.increaseTime), userInfo: nil, repeats: true)
         
         userNode.physicsBody = SKPhysicsBody(circleOfRadius: userNode.size.width / 2)
@@ -548,6 +550,33 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameTimerDelegate, GameForeg
         let combo = SKAction.sequence([pulseIn, pulseOut])
         let repeatAction = SKAction.repeatForever(combo)
         pauseButton.run(repeatAction, withKey: "pauseRepeat")
+        
+        if !sharedRecorder.isRecording == true && record == true {
+            sharedRecorder.startRecording(withMicrophoneEnabled: false , handler: { (error: Error?) in
+                DispatchQueue.main.async {
+                    if error != nil {
+                        //pause game and show error
+                        print(error)
+                        self.pauseGame()
+                    }
+                    else {
+                        self.recordingLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.width * 0.15, height: 35))
+                        self.recordingLabel.text = "•REC"
+                        self.recordingLabel.textAlignment = .center
+                        self.recordingLabel.backgroundColor = UIColor.white.withAlphaComponent(0.7)
+                        self.recordingLabel.layer.cornerRadius = 35 / 2
+                        self.recordingLabel.layer.masksToBounds = true
+                        self.recordingLabel.font = UIFont(name: "Rubik", size: 23)
+                        self.recordingLabel.textColor = .red
+                        self.recordingLabel.center = CGPoint(x: self.backgroundView.frame.maxX - self.recordingLabel.frame.width / 2 - 5, y: self.backgroundView.frame.minY + 25)
+                        if Device() == .iPhoneX {
+                            self.recordingLabel.center.y += 40
+                        }
+                        self.backgroundView.addSubview(self.recordingLabel)
+                    }
+                }
+            })
+        }
         
         if pauseButton != nil{
             animator.simpleAnimationForDuration(0.5, animation: {
@@ -915,8 +944,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameTimerDelegate, GameForeg
         defenseBullets = nil
         
         if sharedRecorder.isAvailable == true && record == true && sharedRecorder.isRecording == true{
-            recordingLabel.removeFromSuperview()
-            recordingLabel = nil
+            if recordingLabel != nil {
+                recordingLabel.removeFromSuperview()
+                recordingLabel = nil
+            }
             sharedRecorder.stopRecording(handler: {
                 (previewVC: RPPreviewViewController?, error: Error?) -> Void in
                 if previewVC != nil {

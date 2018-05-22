@@ -11,12 +11,11 @@
 		B8FD0A3720B316C2009F657F /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = B8FD0A1620B316C2009F657F /* spark.png */; };
 		B8FD0A3820B316C2009F657F /* DefenseParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = B8FD0A1720B316C2009F657F /* DefenseParticle.sks */; };
 		B8FD0A3C20B316C3009F657F /* avo1d.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B8FD0A1C20B316C2009F657F /* avo1d.xcdatamodeld */; };
-		B8FD0A3D20B316C3009F657F /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FD0A2120B316C2009F657F /* IntroViewController.swift */; };
 		B8FD0A3E20B316C3009F657F /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FD0A2220B316C2009F657F /* GameViewController.swift */; };
 		B8FD0A4120B316C3009F657F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8FD0A2520B316C2009F657F /* Images.xcassets */; };
 		B8FD0A4220B316C3009F657F /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = B8FD0A2620B316C2009F657F /* GameScene.sks */; };
 		B8FD0A4320B316C3009F657F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FD0A2720B316C2009F657F /* AppDelegate.swift */; };
-		B8FD0A4420B316C3009F657F /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FD0A2820B316C2009F657F /* Menu.swift */; };
+		B8FD0A4420B316C3009F657F /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FD0A2820B316C2009F657F /* MenuViewController.swift */; };
 		B8FD0A4520B316C3009F657F /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FD0A2920B316C2009F657F /* GameScene.swift */; };
 		B8FD0A4620B316C3009F657F /* EAIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8FD0A2F20B316C2009F657F /* EAIntroView.m */; };
 		B8FD0A4720B316C3009F657F /* EAIntroPage.m in Sources */ = {isa = PBXBuildFile; fileRef = B8FD0A3020B316C2009F657F /* EAIntroPage.m */; };
@@ -44,12 +43,11 @@
 		B8FD0A1D20B316C2009F657F /* avo1d2.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = avo1d2.0.xcdatamodel; sourceTree = "<group>"; };
 		B8FD0A1E20B316C2009F657F /* avo1d.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = avo1d.xcdatamodel; sourceTree = "<group>"; };
 		B8FD0A1F20B316C2009F657F /* avo1d1.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = avo1d1.1.xcdatamodel; sourceTree = "<group>"; };
-		B8FD0A2120B316C2009F657F /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		B8FD0A2220B316C2009F657F /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		B8FD0A2520B316C2009F657F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B8FD0A2620B316C2009F657F /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		B8FD0A2720B316C2009F657F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B8FD0A2820B316C2009F657F /* Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
+		B8FD0A2820B316C2009F657F /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		B8FD0A2920B316C2009F657F /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		B8FD0A2C20B316C2009F657F /* EAIntroView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAIntroView.h; sourceTree = "<group>"; };
 		B8FD0A2D20B316C2009F657F /* EAIntroPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAIntroPage.h; sourceTree = "<group>"; };
@@ -153,7 +151,6 @@
 			isa = PBXGroup;
 			children = (
 				B8FD0A2720B316C2009F657F /* AppDelegate.swift */,
-				B8FD0A2120B316C2009F657F /* IntroViewController.swift */,
 				B8FD0A5E20B34883009F657F /* Menu */,
 				B8FD0A5720B322AF009F657F /* AvoidButton.swift */,
 				B8FD0A5220B321FF009F657F /* Game */,
@@ -221,7 +218,7 @@
 		B8FD0A5E20B34883009F657F /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				B8FD0A2820B316C2009F657F /* Menu.swift */,
+				B8FD0A2820B316C2009F657F /* MenuViewController.swift */,
 				B8FD0A6420B34F4F009F657F /* UserNodePicker.swift */,
 				B8FD0A5F20B34888009F657F /* Background Switcher */,
 			);
@@ -257,6 +254,7 @@
 				B8AC8DAA1A5191F1004D0F12 /* Sources */,
 				B8AC8DAB1A5191F1004D0F12 /* Frameworks */,
 				B8AC8DAC1A5191F1004D0F12 /* Resources */,
+				86DF764162B90F89A71C87C2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -328,6 +326,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		86DF764162B90F89A71C87C2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Avoid: The Game/Pods-Avoid: The Game-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeviceKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Avoid: The Game/Pods-Avoid: The Game-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		E995451775E1317A3427589E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -362,8 +378,7 @@
 				B8FD0A5620B3224A009F657F /* ForegroundGameView.swift in Sources */,
 				B8FD0A3E20B316C3009F657F /* GameViewController.swift in Sources */,
 				B8FD0A6520B34F4F009F657F /* UserNodePicker.swift in Sources */,
-				B8FD0A3D20B316C3009F657F /* IntroViewController.swift in Sources */,
-				B8FD0A4420B316C3009F657F /* Menu.swift in Sources */,
+				B8FD0A4420B316C3009F657F /* MenuViewController.swift in Sources */,
 				B8FD0A5820B322AF009F657F /* AvoidButton.swift in Sources */,
 				B8FD0A4620B316C3009F657F /* EAIntroView.m in Sources */,
 				B8FD0A4920B316C3009F657F /* CoreDataManager.swift in Sources */,
